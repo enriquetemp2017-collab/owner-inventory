@@ -362,9 +362,9 @@
             <tr><td class="size-cell">STUDIO</td><td class="num money">$883</td><td class="num money">$28</td><td class="num money total">$911.00</td></tr>
             <tr><td class="size-cell">1 BD</td><td class="num money">$1,188</td><td class="num money">$36</td><td class="num money total">$1,224.00</td></tr>
             <tr><td class="size-cell">2 BD</td><td class="num money">$1,509</td><td class="num money">$45</td><td class="num money total">$1,554.00</td></tr>
-            <tr><td class="size-cell">3 BD</td><td class="num money">$1,902</td><td class="num money">$62</td><td class="num money total">$1,964.00</td></tr>
-            <tr><td class="size-cell">4BD DLX</td><td class="num money">$2,292</td><td class="num money">$65</td><td class="num money total">$2,357.00</td></tr>
-            <tr><td class="size-cell">4BD GRD</td><td class="num money">$2,517</td><td class="num money">$69</td><td class="num money total">$2,586.00</td></tr>
+            <tr><td class="size-cell">3 BD</td><td class="num money">$1,902</td><td class="num money">$66</td><td class="num money total">$1,968.00</td></tr>
+            <tr><td class="size-cell">4 BD &mdash; HIHI</td><td class="num money">$2,292</td><td class="num money">$65</td><td class="num money total">$2,357.00</td></tr>
+            <tr><td class="size-cell">4 BD &mdash; TT</td><td class="num money">$2,517</td><td class="num money">$69</td><td class="num money total">$2,586.00</td></tr>
             <tr><td class="size-cell">5 BD</td><td class="num money">$2,606</td><td class="num money">$85</td><td class="num money total">$2,691.00</td></tr>
             <tr><td class="size-cell">6BD DLX</td><td class="num money">$3,322</td><td class="num money">$98</td><td class="num money total">$3,420.00</td></tr>
             <tr><td class="size-cell">8 BD</td><td class="num money">$3,778</td><td class="num money">$123</td><td class="num money total">$3,901.00</td></tr>
@@ -387,9 +387,10 @@
         <table>
           <thead><tr><th>Season</th><th>Time</th><th class="num">Price</th></tr></thead>
           <tbody>
-            <tr class="pickable" data-size="2 BD" data-unit="Myrtle Beach — 2 BD" data-season="Value" data-time="E/O" data-price="9900"><td>Value</td><td><span class="badge eo">E/O</span></td><td class="num price-cell">$9,900</td></tr>
+            <tr class="pickable" data-size="2 BD" data-unit="Myrtle Beach — 2 BD" data-season="Value" data-time="E/O" data-price="6000"><td>Value</td><td><span class="badge eo">E/O</span></td><td class="num price-cell">$6,000</td></tr>
           </tbody>
         </table>
+        <div class="note-bar">Monthly payment: <b>$98 fixed</b><br>Maintenance: <b>$1,433 / year</b><br>Taxes: <b>$116 / year</b><br>Maintenance + Taxes Total: <b>$1,549 / year</b></div>
         <div class="empty-msg">No results in this section.</div>
       </section>
     </div>
@@ -440,14 +441,25 @@
   document.getElementById("kpiMaxSub").textContent=rowLabel(pickables[prices.indexOf(max)]);
   document.getElementById("kpiMinSub").textContent=rowLabel(pickables[prices.indexOf(min)]);
 
-  var maintBySize={
-    "STUDIO":"$911.00 / year",
-    "1 BD":"$1,224.00 / year",
-    "2 BD":"$1,554.00 / year",
-    "2 BD Lock-off":"$1,554.00 / year (2 BD)",
-    "3 BD":"$1,964.00 / year",
-    "4 BD":"DLX $2,357.00 \u00B7 GRD $2,586.00 / year"
+  var maintTaxBySize={
+    "STUDIO":{maint:883,taxes:28},
+    "1 BD":{maint:1188,taxes:36},
+    "2 BD":{maint:1509,taxes:45},
+    "2 BD Lock-off":{maint:1509,taxes:45},
+    "3 BD":{maint:1902,taxes:66}
   };
+  var maintTax4BD={
+    "TT":{maint:2517,taxes:69},
+    "HIHI":{maint:2292,taxes:65}
+  };
+  var maintTaxMyrtle={maint:1433,taxes:116};
+  function maintTaxSpans(mt){
+    if(!mt) return "";
+    var total=mt.maint+mt.taxes;
+    return "<span>Maintenance: <b>"+fmt(mt.maint)+" / year</b></span>"+
+           "<span>Taxes: <b>"+fmt(mt.taxes)+" / year</b></span>"+
+           "<span>Maintenance + Taxes Total: <b>"+fmt(total)+" / year</b></span>";
+  }
   var dUnit=document.getElementById("dUnit"), dPrice=document.getElementById("dPrice"),
       dMeta=document.getElementById("dMeta"), dHint=document.getElementById("dHint"),
       dBreakdown=document.getElementById("dBreakdown");
@@ -464,14 +476,24 @@
     var intervalFee=109;
     var totalDueToday=downPayment+closingCosts+intervalFee;
     var balance=price-downPayment;
-    var monthly=balance*0.02009;
+    var isMyrtle=unit.indexOf("Myrtle Beach")===0;
+    var monthly=isMyrtle?98:balance*0.02009;
     dUnit.textContent="Unit "+unit;
     dPrice.textContent=fmt(price);
     var meta="<span>Size: <b>"+size+"</b></span><span>Season: <b>"+season+"</b></span><span>Time: <b>"+time+"</b></span>";
-    if(unit.indexOf("Myrtle Beach")===0){
-      meta+="<span>Maintenance 2 BD Myrtle Beach: <b>$1,549.00 / year</b></span>";
-    } else if(maintBySize[size]){
-      meta+="<span>Maintenance + taxes: <b>"+maintBySize[size]+"</b></span>";
+    if(isMyrtle){
+      meta+=maintTaxSpans(maintTaxMyrtle);
+    } else if(size==="4 BD"&&maintTax4BD[unit]){
+      meta+=maintTaxSpans(maintTax4BD[unit]);
+    } else if(size==="4 BD"){
+      meta+="<span>Maintenance (HIHI): <b>"+fmt(maintTax4BD["HIHI"].maint)+" / year</b></span>"+
+            "<span>Taxes (HIHI): <b>"+fmt(maintTax4BD["HIHI"].taxes)+" / year</b></span>"+
+            "<span>Maintenance + Taxes Total (HIHI): <b>"+fmt(maintTax4BD["HIHI"].maint+maintTax4BD["HIHI"].taxes)+" / year</b></span>"+
+            "<span>Maintenance (TT): <b>"+fmt(maintTax4BD["TT"].maint)+" / year</b></span>"+
+            "<span>Taxes (TT): <b>"+fmt(maintTax4BD["TT"].taxes)+" / year</b></span>"+
+            "<span>Maintenance + Taxes Total (TT): <b>"+fmt(maintTax4BD["TT"].maint+maintTax4BD["TT"].taxes)+" / year</b></span>";
+    } else if(maintTaxBySize[size]){
+      meta+=maintTaxSpans(maintTaxBySize[size]);
     }
     dMeta.innerHTML=meta;
     dBreakdown.innerHTML=
@@ -480,7 +502,7 @@
       '<div class="bd-row"><span class="bd-label">Interval International</span><span class="bd-val">'+fmt(intervalFee)+'</span></div>'+
       '<div class="bd-row total"><span class="bd-label">Total Due Today</span><span class="bd-val">'+fmt2(totalDueToday)+'</span></div>'+
       '<div class="bd-row"><span class="bd-label">Balance of Purchase Price</span><span class="bd-val">'+fmt(balance)+'</span></div>'+
-      '<div class="bd-row monthly"><span class="bd-label">Monthly Payment</span><span class="bd-val">'+fmt2(monthly)+' / mo</span></div>';
+      '<div class="bd-row monthly"><span class="bd-label">Monthly Payment'+(isMyrtle?' (fixed)':'')+'</span><span class="bd-val">'+fmt2(monthly)+' / mo</span></div>';
     dHint.textContent="";
     var panel=document.getElementById("detailPanel");
     if(panel&&panel.scrollIntoView){
