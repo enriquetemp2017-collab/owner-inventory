@@ -90,7 +90,7 @@
   .result-count:empty{display:none}
 
   /* Detail panel */
-  .detail{border:1.5px solid var(--green);background:var(--surface);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;scroll-margin-top:96px}
+  .detail{border:1.5px solid var(--green);background:var(--surface);border-radius:12px;box-shadow:var(--shadow);padding:11px 16px;scroll-margin-top:96px}
   @media (max-width:900px){.detail{scroll-margin-top:196px}}
   .detail .d-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:8px}
   .detail .d-label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--live)}
@@ -100,9 +100,9 @@
   .detail .d-meta{margin-top:6px;font-size:13.5px;color:var(--ink-soft);display:flex;gap:6px 18px;flex-wrap:wrap}
   .detail .d-meta b{color:var(--ink)}
   .detail .d-hint{font-size:13px;color:var(--ink-faint);margin-top:4px}
-  .breakdown{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  .breakdown{margin-top:9px;border-top:1px solid var(--line);padding-top:7px}
   .breakdown:empty{display:none}
-  .bd-row{display:flex;align-items:baseline;gap:12px;padding:5px 0;font-size:14.5px}
+  .bd-row{display:flex;align-items:baseline;gap:12px;padding:4px 0;font-size:14.5px}
   .bd-row .bd-label{color:var(--ink-soft);font-weight:600}
   .bd-row .bd-val{margin-left:auto;font-family:"JetBrains Mono",monospace;font-weight:700;white-space:nowrap}
   .bd-row.total{border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
@@ -267,7 +267,7 @@
             <tr class="pickable" data-size="3 BD" data-unit="ABC" data-season="Peak" data-time="Odd" data-price="30900"><td class="size-cell">3 BD</td><td class="unit-cell">ABC</td><td class="season-col">Peak</td><td><span class="badge odd">Odd</span></td><td class="num price-cell">$30,900</td></tr>
             <tr class="pickable group-start" data-size="2 BD" data-unit="T" data-season="Peak" data-time="Whole" data-price="36900"><td class="size-cell">2 BD</td><td class="unit-cell">T</td><td class="season-col">Peak</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$36,900</td></tr>
             <tr class="pickable" data-size="2 BD" data-unit="T" data-season="Peak" data-time="Odd" data-price="22200"><td class="size-cell">2 BD</td><td class="unit-cell">T</td><td class="season-col">Peak</td><td><span class="badge odd">Odd</span></td><td class="num price-cell">$22,200</td></tr>
-            <tr class="pickable" data-size="2 BD" data-unit="HI" data-season="Peak" data-time="Whole" data-price="24900"><td class="size-cell">2 BD</td><td class="unit-cell">HI</td><td class="season-col">Peak</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$24,900</td></tr>
+            <tr class="pickable" data-size="2 BD" data-unit="HI" data-season="Peak" data-time="Whole" data-price="22500"><td class="size-cell">2 BD</td><td class="unit-cell">HI</td><td class="season-col">Peak</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$22,500</td></tr>
             <tr class="pickable" data-size="2 BD" data-unit="HI" data-season="Peak" data-time="E/O" data-price="14900"><td class="size-cell">2 BD</td><td class="unit-cell">HI</td><td class="season-col">Peak</td><td><span class="badge eo">E/O</span></td><td class="num price-cell">$14,900</td></tr>
             <tr class="pickable group-start" data-size="1 BD" data-unit="O (sleep 4)" data-season="Peak" data-time="Whole" data-price="21900"><td class="size-cell">1 BD</td><td class="unit-cell">O <span class="sub">sleep 4</span></td><td class="season-col">Peak</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$21,900</td></tr>
             <tr class="pickable" data-size="1 BD" data-unit="O (sleep 4)" data-season="Peak" data-time="Odd" data-price="12500"><td class="size-cell">1 BD</td><td class="unit-cell">O <span class="sub">sleep 4</span></td><td class="season-col">Peak</td><td><span class="badge odd">Odd</span></td><td class="num price-cell">$12,500</td></tr>
@@ -475,7 +475,6 @@
     }
     dMeta.innerHTML=meta;
     dBreakdown.innerHTML=
-      '<div class="bd-row"><span class="bd-label">Unit Price</span><span class="bd-val">'+fmt(price)+'</span></div>'+
       '<div class="bd-row"><span class="bd-label">Down Payment (10%)</span><span class="bd-val">'+fmt(downPayment)+'</span></div>'+
       '<div class="bd-row"><span class="bd-label">Closing Costs (2%)</span><span class="bd-val">'+fmt2(closingCosts)+'</span></div>'+
       '<div class="bd-row"><span class="bd-label">Interval International</span><span class="bd-val">'+fmt(intervalFee)+'</span></div>'+
