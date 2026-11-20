@@ -176,7 +176,7 @@
   <span class="sys-name">Inventory System &middot; Owner Inventory</span>
   <div class="clock" aria-label="Current time in Tennessee">
     <div class="time mono" id="clockTime">--:--:--</div>
-    <div class="tz">KODAK, TN &middot; ET</div>
+    <div class="tz">GATLINBURG, TN &middot; ET</div>
   </div>
 </div>
 
@@ -184,6 +184,7 @@
   <div class="page-head">
     <div>
       <h1>Owner Inventory</h1>
+      <div class="date-line" style="font-family:Archivo,sans-serif;font-size:15px;font-weight:700;color:var(--ink);letter-spacing:0;text-transform:none">Westgate Smoky Mountain Resort and Water Park, Gatlinburg, Tennessee</div>
       <div class="date-line" id="pageDate">Monday, November 16, 2026</div>
     </div>
     <div class="sheet-date">Printed sheet: 10/3/2026</div>
@@ -208,7 +209,7 @@
     <div class="kpi">
       <div class="k-label">Unit Sizes</div>
       <div class="k-value">Studio &ndash; 8 BD</div>
-      <div class="k-sub">+ Vacation Villas &amp; Myrtle Beach</div>
+      <div class="k-sub">+ Myrtle Beach</div>
     </div>
   </div>
 
@@ -237,7 +238,7 @@
     </div>
     <div class="d-meta" id="dMeta"></div>
     <div class="breakdown" id="dBreakdown" aria-label="Payment breakdown"></div>
-    <div class="d-hint" id="dHint">Tap any price in the Peak, Value, Vacation Villas or Myrtle Beach tables to see its price and payment breakdown here.</div>
+    <div class="d-hint" id="dHint">Tap any price in the Peak, Value or Myrtle Beach tables to see its price and payment breakdown here.</div>
   </div>
 
   <div class="no-results" id="noResults">No rows match that search. Try another unit or clear the filter.</div>
@@ -372,30 +373,6 @@
         <div class="empty-msg">No results in this section.</div>
       </section>
 
-      <section class="card" data-section="value" aria-label="Westgate Vacation Villas">
-        <div class="card-head">
-          <h2>Westgate V. Villas</h2>
-          <span class="tag gray">LOCATION CODE 0</span>
-        </div>
-        <table>
-          <thead><tr><th>Unit Size</th><th>Season</th><th>Time</th><th class="num">Price</th></tr></thead>
-          <tbody>
-            <tr class="pickable" data-size="2 BD VV" data-unit="2 BD — Vacation Villas" data-season="All" data-time="Whole" data-price="12900"><td class="size-cell">2 BD</td><td>All</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$12,900</td></tr>
-            <tr class="pickable" data-size="4 BD VV" data-unit="4 BD — Vacation Villas" data-season="All" data-time="Whole" data-price="26900"><td class="size-cell">4 BD</td><td>All</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$26,900</td></tr>
-            <tr class="pickable" data-size="6 BD VV" data-unit="6 BD — Vacation Villas" data-season="All" data-time="Whole" data-price="38900"><td class="size-cell">6 BD</td><td>All</td><td><span class="badge whole">Whole</span></td><td class="num price-cell">$38,900</td></tr>
-          </tbody>
-        </table>
-        <table>
-          <thead><tr><th>Unit Size</th><th class="num">Maint.</th><th class="num">Taxes</th><th class="num">Total</th></tr></thead>
-          <tbody>
-            <tr><td class="size-cell">2 BD VV</td><td class="num money">$1,318</td><td class="num money">$154</td><td class="num money total">$1,472.00</td></tr>
-            <tr><td class="size-cell">4 BR VV</td><td class="num money">$2,636</td><td class="num money">$308</td><td class="num money total">$2,944.00</td></tr>
-            <tr><td class="size-cell">6 BR VV</td><td class="num money">$3,954</td><td class="num money">$462</td><td class="num money total">$4,416.00</td></tr>
-          </tbody>
-        </table>
-        <div class="empty-msg">No results in this section.</div>
-      </section>
-
       <section class="card" data-section="value" aria-label="Myrtle Beach">
         <div class="card-head">
           <h2>Myrtle Beach</h2>
@@ -469,10 +446,7 @@
     "2 BD":"$1,554.00 / year",
     "2 BD Lock-off":"$1,554.00 / year (2 BD)",
     "3 BD":"$1,964.00 / year",
-    "4 BD":"DLX $2,357.00 \u00B7 GRD $2,586.00 / year",
-    "2 BD VV":"$1,472.00 / year (Vacation Villas)",
-    "4 BD VV":"$2,944.00 / year (Vacation Villas)",
-    "6 BD VV":"$4,416.00 / year (Vacation Villas)"
+    "4 BD":"DLX $2,357.00 \u00B7 GRD $2,586.00 / year"
   };
   var dUnit=document.getElementById("dUnit"), dPrice=document.getElementById("dPrice"),
       dMeta=document.getElementById("dMeta"), dHint=document.getElementById("dHint"),
